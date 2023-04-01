@@ -12,10 +12,12 @@
 			"detour": "o-direct"
 		}, {
 			"tag": "dns-cloudflare",
-			"address": "1.1.1.1"
+			"address": "1.1.1.1",
+			"detour": "o-out"
 		}, {
 			"tag": "dns-google",
-			"address": "8.8.8.8"
+			"address": "8.8.8.8",
+			"detour": "o-out"
 		}, {
 			"tag": "dns-fallback",
 			"address": "8.8.4.4",
@@ -24,14 +26,27 @@
 	},
 	"inbounds": [{
 		"type": "socks",
-		"tag": "i-debug",
+		"tag": "i-socks",
 		"listen": "127.0.0.1",
-		"listen_port": 10808,
+		"listen_port": 20040,
 		"sniff": true,
 		"sniff_override_destination": false,
 		"domain_strategy": "prefer_ipv6"
 	}],
 	"outbounds": [{
+		"type": "wireguard",
+		"tag": "o-wg",
+		"server": "__WG_END__",
+		"server_port": __WG_END_PORT__,
+		"local_address": [
+			"__WG_ALLOWED_IPv4__",
+			"__WG_ALLOWED_IPv6__"
+		],
+		"private_key": "__WG_PRI__",
+		"peer_public_key": "__WG_PUB__",
+		"mtu": __WG_MTU__,
+		"domain_strategy": "prefer_ipv6"
+	}, {
 		"type": "direct",
 		"tag": "o-direct",
 		"domain_strategy": "prefer_ipv6"
@@ -43,11 +58,12 @@
 		"tag": "o-block"
 	}],
 	"route": {
-		"geoip": {
-			"download_url": "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db"
-		},
-		"geosite": {
-			"download_url": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
-		}
+		"final": "o-wg",
+		"rules": [{
+			"port": [
+				53
+			],
+			"outbound": "o-dns"
+		}]
 	}
 }
