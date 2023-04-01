@@ -1,0 +1,33 @@
+{
+	"outbounds": [{
+		"tag": "o-remote",
+		"protocol": "vless",
+		"settings": {
+			"vnext": [{
+				"address": "__SERVER_ADDRESS__",
+				"port": __SERVER_PORT__,
+				"users": [{
+					"id": "__USER_UUID__",
+					"encryption": "none",
+					"flow": "xtls-rprx-vision-udp443"
+				}]
+			}]
+		},
+		"streamSettings": {
+			"network": "tcp",
+			"security": "tls",
+			"tlsSettings": {
+				"serverName": "__TLS_SNI__",
+				"alpn": ["h2", "http/1.1"],
+				"minVersion": "1.2",
+				"fingerprint": "random"
+			},
+			"tcpSettings": {
+				"acceptProxyProtocol": false,
+				"header": {
+					"type": "none"
+				}
+			}
+		}
+	}]
+}

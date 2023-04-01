@@ -1,0 +1,177 @@
+{
+	"log": {
+		"access": null,
+		"error": null,
+		"loglevel": "warning"
+	},
+	"dns": {
+		"servers": [
+			"1.1.1.1",
+			"8.8.8.8",
+			"8.8.4.4"
+		],
+		"tag": "i-dns"
+	},
+	"inbounds": [{
+		"protocol": "socks",
+		"tag": "i-socks",
+		"listen": "127.0.0.1",
+		"port": 10808,
+		"settings": {
+			"ip": "127.0.0.1",
+			"udp": true
+		},
+		"sniffing": {
+			"enabled": true,
+			"destOverride": [
+				"http",
+				"tls",
+				"quic"
+			],
+			"metadataOnly": false,
+			"routeOnly": true
+		}
+	}, {
+		"protocol": "http",
+		"tag": "i-http",
+		"listen": "127.0.0.1",
+		"port": 10809,
+		"settings": {
+			"timeout": 300,
+			"allowTransparent": false
+		},
+		"sniffing": {
+			"enabled": true,
+			"destOverride": [
+				"http",
+				"tls",
+				"quic"
+			],
+			"metadataOnly": false,
+			"routeOnly": true
+		}
+	}, {
+		"protocol": "dokodemo-door",
+		"tag": "i-dns-server",
+		"listen": "127.0.0.1",
+		"port": 10810,
+		"settings": {
+			"address": "1.1.1.1",
+			"port": 53,
+			"network": "tcp,udp"
+		},
+		"sniffing": {
+			"enabled": false
+		}
+	}, {
+		"protocol": "dokodemo-door",
+		"tag": "i-tproxy-v4",
+		"listen": "127.0.0.1",
+		"port": 10811,
+		"settings": {
+			"address": "",
+			"port": 0,
+			"timeout": 0,
+			"network": "tcp,udp",
+			"followRedirect": true
+		},
+		"sniffing": {
+			"enabled": true,
+			"destOverride": [
+				"http",
+				"tls",
+				"quic"
+			],
+			"metadataOnly": false,
+			"routeOnly": true
+		},
+		"streamSettings": {
+			"sockopt": {
+				"tproxy": "tproxy"
+			},
+			"domainStrategy": "UseIP"
+		}
+	}, {
+		"protocol": "dokodemo-door",
+		"tag": "i-tproxy-v6",
+		"listen": "::1",
+		"port": 10811,
+		"settings": {
+			"address": "",
+			"port": 0,
+			"timeout": 0,
+			"network": "tcp,udp",
+			"followRedirect": true
+		},
+		"sniffing": {
+			"enabled": true,
+			"destOverride": [
+				"http",
+				"tls",
+				"quic"
+			],
+			"metadataOnly": false,
+			"routeOnly": true
+		},
+		"streamSettings": {
+			"sockopt": {
+				"tproxy": "tproxy"
+			},
+			"domainStrategy": "UseIP"
+		}
+	}],
+	"outbounds": [{
+		"protocol": "blackhole",
+		"tag": "blocked",
+		"settings": {
+			"response": {
+				"type": "none"
+			}
+		},
+		"streamSettings": {
+			"sockopt": {
+				"mark": 255
+			}
+		}
+	}, {
+		"protocol": "freedom",
+		"tag": "direct",
+		"settings": {
+			"domainStrategy": "AsIs"
+		},
+		"streamSettings": {
+			"sockopt": {
+				"mark": 255
+			}
+		}
+	}, {
+		"protocol": "dns",
+		"tag": "dns",
+		"streamSettings": {
+			"sockopt": {
+				"mark": 255
+			}
+		}
+	}],
+	"routing": {
+		"domainStrategy": "IPOnDemand",
+		"domainMatcher": "hybrid",
+		"rules": [{
+			"type": "field",
+			"name": "main-dns-remote",
+			"inboundTag": "i-dns",
+			"outboundTag": "o-remote"
+		}, {
+			"type": "field",
+			"name": "main-dns-intercept",
+			"network": "tcp,udp",
+			"port": 53,
+			"outboundTag": "dns"
+		}, {
+			"type": "field",
+			"name": "final-remote",
+			"network": "tcp,udp",
+			"outboundTag": "o-remote"
+		}]
+	}
+}
