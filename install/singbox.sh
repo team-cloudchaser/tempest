@@ -18,16 +18,19 @@ if [ -e "$PREFIX/opt/sing-box" ] ; then
 else
 	mkdir -p $PREFIX/opt/sing-box
 fi
+filename="sing-box-${targetVer}-linux-${transArch}"
 if [ -e "./sing-box.tgz" ] ; then
 	echo "Copying sing-box to /opt ..."
 	cp ./sing-box.tgz $PREFIX/opt/sing-box/
 else
 	echo "Downloading sing-box..."
-	curl -Lso $PREFIX/opt/sing-box/sing-box.tgz https://github.com/SagerNet/sing-box/releases/latest/download/sing-box-${targetVer}-linux-${transArch}.tar.gz
+	curl -Lso $PREFIX/opt/sing-box/sing-box.tgz https://github.com/SagerNet/sing-box/releases/latest/download/${filename}.tar.gz
 fi
 cd $PREFIX/opt/sing-box/
 echo "Extracting archives..."
 tar zxvf sing-box.tgz && rm sing-box.tgz
+mv ./${filename}/* ./
+rmdir ./${filename}
 echo "Linking executables..."
 if [ -e "$PREFIX/bin/sing-box" ] ; then
 	echo "Found pre-existing copy."
