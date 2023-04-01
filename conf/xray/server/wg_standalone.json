@@ -1,0 +1,80 @@
+{
+	"log": {
+		"access": null,
+		"error": null,
+		"loglevel": "warning"
+	},
+	"dns": {
+		"servers": [
+			"__TARGET_DNS__",
+			"127.0.0.1",
+			"1.14.5.14"
+		]
+	},
+	"inbounds": [{
+		"listen": "127.0.0.1",
+		"port": 20040,
+		"protocol": "socks",
+		"tag": "i-socks",
+		"settings": {
+			"udp": true,
+			"ip": "127.0.0.1"
+		},
+		"sniffing": {
+			"enabled": false
+		}
+	}],
+	"outbounds": [{
+		"protocol": "wireguard",
+		"tag": "o-wg",
+		"settings": {
+			"secretKey": "__WG_PRI__",
+			"address": [
+				"__WG_ALLOWED_IPv4__",
+				"__WG_ALLOWED_IPv6__"
+			],
+			"peers": [{
+				"endpoint": "__WG_END__",
+				"publicKey": "__WG_PUB__",
+				"keepAlive": 30,
+				"allowedIPs": [
+					"0.0.0.0/0",
+					"::/0"
+				]
+			}],
+			"mtu": __WG_MTU__
+		}
+	}, {
+		"protocol": "freedom",
+		"tag": "direct"
+	}, {
+		"protocol": "freedom",
+		"tag": "o-dns",
+		"settings": {
+			"domainStrategy": "AsIs",
+			"redirect": "1.1.1.1:0"
+		}
+	}],
+	"routing": {
+		"domainStrategy": "IPIfNonMatch",
+		"domainMatcher": "hybrid",
+		"rules": [{
+			"type": "field",
+			"name": "dns-fallback",
+			"ip": ["1.14.5.14"],
+			"network": "tcp,udp",
+			"outboundTag": "o-dns"
+		}, {
+			"type": "field",
+			"name": "local-bypass",
+			"ip": ["geoip:private"],
+			"network": "tcp,udp",
+			"outboundTag": "direct"
+		}, {
+			"type": "field",
+			"name": "wg-dial",
+			"network": "tcp,udp",
+			"outboundTag": "o-wg"
+		}]
+	}
+}

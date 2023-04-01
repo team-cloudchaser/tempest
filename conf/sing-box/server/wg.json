@@ -1,0 +1,25 @@
+{
+	"outbounds": [{
+		"type": "wireguard",
+		"tag": "o-wg",
+		"server": "__WG_END__",
+		"server_port": __WG_END_PORT__,
+		"local_address": [
+			"__WG_ALLOWED_IPv4__",
+			"__WG_ALLOWED_IPv6__"
+		],
+		"private_key": "__WG_PRI__",
+		"peer_public_key": "__WG_PUB__",
+		"mtu": __WG_MTU__,
+		"domain_strategy": "prefer_ipv6"
+	}],
+	"route": {
+		"final": "o-wg",
+		"rules": [{
+			"port": [
+				53
+			],
+			"outbound": "o-dns"
+		}]
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"route": {
+		"final": "o-direct",
+		"rules": [{
+			"port": [
+				53
+			],
+			"outbound": "o-dns"
+		}, {
+			"geoip": [
+				"ir",
+				"ru",
+				"cn"
+			],
+			"outbound": "o-block"
+		}]
+	}
+}
