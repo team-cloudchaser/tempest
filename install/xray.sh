@@ -1,5 +1,5 @@
 #!/bin/bash
-appName="XRay"
+appName="Xray"
 debArch=$(uname -m)
 transArch=$debArch
 case $debArch in
@@ -43,7 +43,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 	if [ -e "$PREFIX/lib/systemd/system/xray.service" ] ; then
 		echo "Skipped registering."
 	else
-		echo "Registering XRay as service..."
+		echo "Registering Xray as service..."
 		curl -Lo "$PREFIX/lib/systemd/system/xray.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
@@ -51,7 +51,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 	if [ -e "$PREFIX/lib/systemd/system/xray@.service" ] ; then
 		echo "Skipped registering."
 	else
-		echo "Registering XRay as service..."
+		echo "Registering Xray as service..."
 		curl -Lo "$PREFIX/lib/systemd/system/xray@.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray@.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
@@ -69,4 +69,4 @@ if [ -e "$PREFIX/usr" ] ; then
 		ln -s $PREFIX/etc/xray $PREFIX/usr/local/etc/
 	fi
 fi
-echo "XRay is now installed on your system. Modify /etc/xray/config.json for more info."
+echo "Xray is now installed on your system. Modify /etc/xray/config.json for more info."
