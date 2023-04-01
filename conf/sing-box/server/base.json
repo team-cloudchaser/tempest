@@ -1,0 +1,55 @@
+{
+	"log": {
+		"disabled": false,
+		"level": "warning",
+		"timestamp": true
+	},
+	"dns": {
+		"servers": [{
+			"tag": "dns-local",
+			"address": "127.0.0.1",
+			"detour": "o-out"
+		}, {
+			"tag": "dns-cloudflare",
+			"address": "1.1.1.1",
+			"detour": "o-out"
+		}, {
+			"tag": "dns-google",
+			"address": "8.8.8.8",
+			"detour": "o-out"
+		}, {
+			"tag": "dns-fallback",
+			"address": "8.8.4.4",
+			"detour": "o-direct"
+		}],
+		"strategy": "prefer_ipv6"
+	},
+	"inbounds": [{
+		"type": "socks",
+		"tag": "i-debug",
+		"listen": "127.0.0.1",
+		"listen_port": 10808,
+		"sniff": true,
+		"sniff_override_destination": false,
+		"domain_strategy": "prefer_ipv6"
+	}],
+	"outbounds": [{
+		"type": "direct",
+		"tag": "o-direct",
+		"domain_strategy": "prefer_ipv6"
+	}, {
+		"type": "dns",
+		"tag": "o-dns"
+	}, {
+		"type": "block",
+		"tag": "o-block"
+	}],
+	"route": {
+		"geoip": {
+			"download_url": "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db"
+		},
+		"geosite": {
+			"download_url": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
+		}
+	}
+}

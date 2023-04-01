@@ -1,0 +1,11 @@
+{
+	"route": {
+		"final": "o-direct",
+		"rules": [{
+			"port": [
+				53
+			],
+			"outbound": "o-dns"
+		}]
+	}
+}
