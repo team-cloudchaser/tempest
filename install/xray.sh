@@ -44,7 +44,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering XRay as service..."
-		curl -Lo "$PREFIX/lib/systemd/system/xray.service" 
+		curl -Lo "$PREFIX/lib/systemd/system/xray.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
@@ -52,7 +52,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering XRay as service..."
-		curl -Lo "$PREFIX/lib/systemd/system/xray@.service" 
+		curl -Lo "$PREFIX/lib/systemd/system/xray@.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray@.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
