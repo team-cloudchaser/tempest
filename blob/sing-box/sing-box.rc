@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+description="Sing Box Service"
+
+extra_started_commands="reload"
+
+command="/bin/sing-box"
+command_args="-D /opt/sing-box/ -c /etc/sing-box/config.json run"
+
+pidfile="/run/$RC_SVCNAME.pid"
+required_files="/etc/sing-box/config.json"
+
+depend() {
+	want net
+}
+
+reload() {
+	start-stop-daemon --signal HUP --exec "$command" --pidfile "$pidfile"
+}

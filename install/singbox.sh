@@ -56,6 +56,15 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
+elif [ -e "$PREFIX/sbin/rc-service" ] ; then
+	echo "using OpenRC instead."
+	if [ -e "$PREFIX/etc/init.d/sing-box" ] ; then
+		echo "Skipped registering."
+	else
+		echo "Registering Sing Box as service..."
+		curl -Lo "$PREFIX/etc/init.d/sing-box" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/sing-box/sing-box.rc
+		chmod +x $PREFIX/etc/init.d/sing-box
+	fi
 else
 	echo "not found."
 fi
