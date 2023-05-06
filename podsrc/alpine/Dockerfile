@@ -1,4 +1,4 @@
-FROM docker.io/ltgc/gel
+FROM docker.io/ltgc/gel:alpine
 
 # Set working environment up
 WORKDIR /root
@@ -6,8 +6,8 @@ WORKDIR /root
 # Copy and run
 COPY ./shared/etc/ /root/etc/
 COPY ./shared/sh/ /root/sh/shared
-COPY ./etc/ /root/etc/
-COPY ./sh/ /root/sh/distro
+#COPY ./etc/ /root/etc/
+#COPY ./sh/ /root/sh/distro
 #RUN sh /root/sh/distro/init.sh
 RUN bash /root/sh/shared/setup.sh
 #RUN bash /root/sh/distro/setup.sh
