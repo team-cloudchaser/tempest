@@ -11,7 +11,7 @@ pidfile="/run/$RC_SVCNAME.pid"
 required_files="/etc/xray/config.json"
 
 depend() {
-	need net
+	want net
 }
 
 reload() {
