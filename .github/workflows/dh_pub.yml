@@ -1,0 +1,43 @@
+name: Build for Docker Hub
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  schedule:
+    - cron: '50 8 * * 5'
+  push:
+    branches: [ "main" ]
+    paths: 
+      - "build_version"
+      - ".github/workflows/**_pub.yml"
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: docker.io
+  DH_ACCT: ${{ secrets.DH_USER }}
+  DH_USER: ltgc
+  DH_PASS: ${{ secrets.DH_PASS }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Log in to ${{ env.REGISTRY }}
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: ${{ env.DH_ACCT }}
+          password: ${{ env.DH_PASS }}
+          registry: ${{ env.REGISTRY }}
+      - name: Generate distributable directory structure
+        run: PATH=./:$PATH bash ./shx build
+      - name: Build and push the Alpine flavour
+        run: PATH=./:$PATH bash ./shx submit alpine
+      #- name: Build and push the Debian flavour
+        #run: PATH=./:$PATH bash ./shx submit debian
