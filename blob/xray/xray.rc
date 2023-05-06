@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+description="Xray Service"
+
+extra_started_commands="reload"
+
+command="/bin/xray"
+command_args="run -config /etc/xray/config.json"
+
+pidfile="/run/$RC_SVCNAME.pid"
+required_files="/etc/xray/config.json"
+
+depend() {
+	need net
+}
+
+reload() {
+	start-stop-daemon --signal HUP --exec "$command" --pidfile "$pidfile"
+}

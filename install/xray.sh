@@ -56,6 +56,15 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
+elif [ -e "$PREFIX/sbin/rc-service" ] ; then
+	echo "using OpenRC instead."
+	if [ -e "$PREFIX/etc/init.d/xray" ] ; then
+		echo "Skipped registering."
+	else
+		echo "Registering Xray as service..."
+		curl -Lo "$PREFIX/etc/init.d/xray" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray.rc
+		chmod +x $PREFIX/etc/init.d/xray
+	fi
 else
 	echo "not found."
 fi
