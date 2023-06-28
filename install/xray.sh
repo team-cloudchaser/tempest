@@ -26,7 +26,11 @@ if [ -e "./xray.zip" ] ; then
 	cp ./xray.zip $PREFIX/opt/xray/
 else
 	echo "Downloading xray..."
-	curl -sLo $PREFIX/opt/xray/xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-$transArch.zip
+	if [ "$INSTALL_VER" != "" ] ; then
+		curl -sLo $PREFIX/opt/xray/xray.zip https://github.com/XTLS/Xray-core/releases/download/v${INSTALL_VER}/Xray-linux-$transArch.zip
+	else
+		curl -sLo $PREFIX/opt/xray/xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-$transArch.zip
+	fi
 fi
 echo "Extracting archive..."
 cd $PREFIX/opt/xray/
