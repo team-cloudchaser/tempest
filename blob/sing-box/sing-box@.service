@@ -11,7 +11,6 @@ ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
 LimitNOFILE=infinity
-MemoryHigh=119M
 MemoryMax=120M
 
 [Install]

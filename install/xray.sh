@@ -74,7 +74,11 @@ else
 fi
 echo "Filling for configuration files..."
 mkdir -p $PREFIX/etc/xray/
-echo "{}" > $PREFIX/etc/xray/config.json
+if [ -e "$PREFIX/etc/xray/config.json" ] ; then
+	echo "Config file already present. Skipping creation."
+else
+	echo "{}" > $PREFIX/etc/xray/config.json
+fi
 if [ -e "$PREFIX/usr" ] ; then
 	if [ -e "$PREFIX/usr/local" ] ; then
 		echo "Adding fallback..."
