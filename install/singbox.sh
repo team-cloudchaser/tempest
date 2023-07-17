@@ -18,7 +18,11 @@ if [ -e "$PREFIX/opt/sing-box" ] ; then
 else
 	mkdir -p $PREFIX/opt/sing-box
 fi
-filename="sing-box-${targetVer}-linux-${transArch}"
+platform=linux
+if [ "$TERMUX_VERSION" != "" ] ; then
+	platform=android
+fi
+filename="sing-box-${targetVer}-${platform}-${transArch}"
 if [ -e "./sing-box.tgz" ] ; then
 	echo "Copying sing-box to /opt ..."
 	cp ./sing-box.tgz $PREFIX/opt/sing-box/
@@ -31,16 +35,16 @@ echo "Extracting archives..."
 tar zxvf sing-box.tgz && rm sing-box.tgz
 mv ./${filename}/* ./
 rmdir ./${filename}
-echo "Linking executables..."
+printf "Linking executables... "
 if [ -e "$PREFIX/bin/sing-box" ] ; then
-	echo "Found pre-existing copy."
+	echo "skipped."
 else
-	ln -s $PREFIX/opt/sing-box/sing-box $PREFIX/bin/sing-box
+	ln -s $PREFIX/opt/sing-box/sing-box $PREFIX/bin/sing-box && echo "done."
 fi
 printf "Testing Systemd... "
 if [ -e "$PREFIX/lib/systemd" ] ; then
 	echo "found."
-	if [ -e "$PREFIX/lib/systemd/system/sing-box.service" ] ; then
+	if [ -e "$PREFIX/lib/systemd/system/sing-box.service" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering sing-box as service..."
@@ -48,7 +52,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
-	if [ -e "$PREFIX/lib/systemd/system/sing-box@.service" ] ; then
+	if [ -e "$PREFIX/lib/systemd/system/sing-box@.service" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering sing-box as service..."
@@ -58,7 +62,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 	fi
 elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 	echo "using OpenRC instead."
-	if [ -e "$PREFIX/etc/init.d/sing-box" ] ; then
+	if [ -e "$PREFIX/etc/init.d/sing-box" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Sing Box as service..."
@@ -68,8 +72,13 @@ elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 else
 	echo "not found."
 fi
-echo "Filling for configuration files..."
+printf "Filling for configuration files..."
 mkdir -p $PREFIX/etc/sing-box/
-echo "{}" > $PREFIX/etc/sing-box/config.json
+if [ -e "$PREFIX/etc/sing-box/config.json" ] ; then
+	echo "skipped."
+else
+	echo "{}" > $PREFIX/etc/sing-box/config.json
+	echo "done."
+fi
 echo "Sing Box is now installed on your system. Modify /etc/sing-box/config.json for more info."
 exit
