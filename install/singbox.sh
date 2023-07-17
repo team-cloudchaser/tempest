@@ -72,7 +72,7 @@ elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 else
 	echo "not found."
 fi
-printf "Filling for configuration files..."
+printf "Filling for configuration files... "
 mkdir -p $PREFIX/etc/sing-box/
 if [ -e "$PREFIX/etc/sing-box/config.json" ] ; then
 	echo "skipped."
