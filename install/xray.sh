@@ -44,7 +44,7 @@ fi
 printf "Testing Systemd... "
 if [ -e "$PREFIX/lib/systemd" ] ; then
 	echo "found."
-	if [ -e "$PREFIX/lib/systemd/system/xray.service" ] ; then
+	if [ -e "$PREFIX/lib/systemd/system/xray.service" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Xray as service..."
@@ -52,7 +52,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
-	if [ -e "$PREFIX/lib/systemd/system/xray@.service" ] ; then
+	if [ -e "$PREFIX/lib/systemd/system/xray@.service" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Xray as service..."
@@ -62,7 +62,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 	fi
 elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 	echo "using OpenRC instead."
-	if [ -e "$PREFIX/etc/init.d/xray" ] ; then
+	if [ -e "$PREFIX/etc/init.d/xray" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Xray as service..."
