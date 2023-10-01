@@ -11,7 +11,7 @@ ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
 LimitNOFILE=infinity
-MemoryMax=120M
+MemoryMax=100M
 
 [Install]
 WantedBy=multi-user.target
