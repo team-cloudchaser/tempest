@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+description="Hysteria 2 Server"
+
+extra_started_commands="reload"
+
+command="/bin/hysteria"
+command_args="server -c /etc/hysteria/server.json"
+
+pidfile="/run/$RC_SVCNAME.pid"
+required_files="/etc/hysteria/server.json"
+
+depend() {
+	want net
+}
+
+reload() {
+	start-stop-daemon --signal HUP --exec "$command" --pidfile "$pidfile"
+}
