@@ -83,10 +83,10 @@ fi
 printf "Filling for configuration files... server "
 mkdir -p $PREFIX/etc/hysteria/
 if [ -e "$PREFIX/etc/hysteria/server.json" ] ; then
-	echo "skipped,"
+	printf "skipped,"
 else
 	echo "{}" > $PREFIX/etc/hysteria/server.json
-	echo "done,"
+	printf "done,"
 fi
 printf " client "
 if [ -e "$PREFIX/etc/hysteria/client.json" ] ; then
