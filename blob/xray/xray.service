@@ -13,7 +13,9 @@ ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
 RestartPreventExitStatus=23
-MemoryMax=100M
+StartupMemoryMax=120M
+MemoryMax=120M
+CPUQuota=30%
 
 [Install]
 WantedBy=multi-user.target

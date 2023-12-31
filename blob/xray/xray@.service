@@ -11,7 +11,9 @@ NoNewPrivileges=true
 ExecStart=/bin/xray run -config /etc/xray/%i.json
 Restart=on-failure
 RestartPreventExitStatus=23
-MemoryMax=100M
+StartupMemoryMax=120M
+MemoryMax=120M
+CPUQuota=30%
 
 [Install]
 WantedBy=multi-user.target
