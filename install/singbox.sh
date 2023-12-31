@@ -2,7 +2,7 @@
 appName="Sing Box"
 debArch=$(uname -m)
 transArch=$debArch
-targetVer=${INSTALL_VER:-1.3.0}
+targetVer=${INSTALL_VER:-1.5.5}
 case $debArch in
 	"x86_64" | "amd64")
 		transArch="amd64"
