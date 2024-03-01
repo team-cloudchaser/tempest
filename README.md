@@ -21,11 +21,11 @@ Only the programs listed below are supported.
 ### Supported distros
 If you spot support problems, do not hesitate to open up an issue!
 
-* AlmaLinux 9.0+
-* Alpine Linux 3.18.0+ (`bash` required)
-* Debian 12.0+
-* openSUSE Leap 15.5+
-* Rocky Linux 9.0+
+* AlmaLinux 9.0+ (uses `systemd`)
+* Alpine Linux 3.18.0+ (`bash` required, uses OpenRC)
+* Debian 12.0+ (uses `systemd`)
+* openSUSE Leap 15.5+ (uses `systemd`)
+* Rocky Linux 9.0+ (uses `systemd`)
 * Termux
 
 ## Targets
