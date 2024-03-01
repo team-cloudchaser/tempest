@@ -19,13 +19,13 @@ Only the programs listed below are supported.
 * `xray`
 
 ### Supported distros
-If you spot support problems, do not hesitate to open up an issue!
+If you spot support problems, do not hesitate to open an issue in the repo!
 
-* AlmaLinux 9.0+ (uses `systemd`)
-* Alpine Linux 3.18.0+ (`bash` required, uses OpenRC)
-* Debian 12.0+ (uses `systemd`)
-* openSUSE Leap 15.5+ (uses `systemd`)
-* Rocky Linux 9.0+ (uses `systemd`)
+* AlmaLinux 9.0+ (uses systemd)
+* Alpine Linux 3.18.0+ (Bash required, uses OpenRC)
+* Debian 12.0+ (uses systemd)
+* openSUSE Leap 15.5+ (uses systemd)
+* Rocky Linux 9.0+ (uses systemd)
 * Termux
 
 ## Targets
