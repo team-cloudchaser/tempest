@@ -26,6 +26,7 @@ If you spot support problems, do not hesitate to open up an issue!
 * Debian 12.0+
 * openSUSE Leap 15.5+
 * Rocky Linux 9.0+
+* Termux
 
 ## Targets
 To get included into this repo, the software itself must be open-source, and does not endorse closed-source counterparts.
