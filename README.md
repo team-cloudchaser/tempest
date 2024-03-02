@@ -19,7 +19,9 @@ Only the programs listed below are supported.
 * `xray`
 
 ### Supported distros
-If you spot support problems, do not hesitate to open an issue in the repo!
+The scripts will attempt registering respective services when it detects a service manager, being systemd, OpenRC or else. In future versions of these scripts, it would be possible to override this behaviour by setting `NOSERVICE` to any non-false values.
+
+If you spot problems with installation, do not hesitate to open an issue in the repo!
 
 * AlmaLinux 9.0+ (uses systemd)
 * Alpine Linux 3.18.0+ (Bash required, uses OpenRC)
