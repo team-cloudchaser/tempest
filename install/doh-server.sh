@@ -53,17 +53,17 @@ fi
 mkdir -p "$PREFIX/etc/doh-server"
 if [ ! -f "$PREFIX/etc/doh-server/default.sh" ]; then
 	echo "Initializing config files..."
-	targetFile = "$PREFIX/etc/doh-server/default.sh"
+	targetFile="$PREFIX/etc/doh-server/default.sh"
 	echo "#!/bin/bash" > $targetFile
-	echo "doh-server -H example.com -p \"/dns-query\" -l 127.0.0.1:3053 -u 127.0.0.1:53 -t 4 -c 256 -C 16 -T 16 -X 86400"
+	echo "doh-server -H example.com -p \"/dns-query\" -l 127.0.0.1:3053 -u 127.0.0.1:53 -t 4 -c 256 -C 16 -T 16 -X 86400" >> $targetFile
 	echo "exit" >> $targetFile
 fi
 printf "Fetching service files... "
-if [ -e "$PREFIX/sbin/rc-service" ]; then
+if [ -e "$PREFIX/lib/systemd" ]; then
 	echo "Found systemd."
 	curl -Lo "$PREFIX/lib/systemd/system/doh-server.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/doh-server/doh-server.service
 	curl -Lo "$PREFIX/lib/systemd/system/doh-server@.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/doh-server/doh-server@.service
-elif [ -e "$PREFIX/lib/systemd" ]; then
+elif [ -e "$PREFIX/sbin/rc-service" ]; then
 	echo "Found OpenRC."
 	curl -Lo "$PREFIX/etc/init.d/doh-server" https://github.com/team-cloudchaser/tempest/raw/main/blob/doh-server/doh-server.rc
 	chmod +x "$PREFIX/etc/init.d/doh-server"
