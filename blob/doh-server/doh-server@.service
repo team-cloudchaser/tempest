@@ -1,0 +1,17 @@
+[Unit]
+Description=DoH Server Service
+Documentation=https://github.com/DNSCrypt/doh-server
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+NoNewPrivileges=true
+ExecStart=/bin/bash /etc/doh-server/%i.sh
+Restart=on-failure
+RestartSec=5s
+StartupMemoryMax=120M
+MemoryMax=100M
+CPUQuota=10%
+
+[Install]
+WantedBy=multi-user.target
