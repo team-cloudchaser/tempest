@@ -9,8 +9,8 @@ NoNewPrivileges=true
 ExecStart=/bin/bash /etc/doh-server/default.sh
 Restart=on-failure
 RestartSec=5s
-StartupMemoryMax=120M
-MemoryMax=100M
+#StartupMemoryMax=40M
+MemoryMax=25M
 CPUQuota=10%
 
 [Install]
