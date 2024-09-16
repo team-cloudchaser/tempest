@@ -18,13 +18,13 @@ fi
 if [ ! -f "$(which bzip2)" ]; then
 	echo "bzip2 support is not present on your system."
 	if [ -f "$(which apt)" ]; then
-		apt install -y bzip2
+		apt install -y xz-utils
 	elif [ -f "$(which apk)" ]; then
-		apk add bzip2
+		apk add xz
 	elif [ -f "$(which zypper)" ]; then
-		zypper --gpg-auto-import-keys in -y bzip2
+		zypper --gpg-auto-import-keys in -y xz
 	elif [ -f "$(which dnf)" ]; then
-		dnf install -y bzip2
+		dnf install -y xz
 	else
 		echo "Cannot find supported package manager, quitting."
 		exit 1
@@ -34,13 +34,13 @@ echo "Installing the DNSCrypt DoH Server... May not yet work on Alpine."
 oldPwd="$(pwd)"
 mkdir -p "$PREFIX/opt/doh-server"
 cd "$PREFIX/opt/doh-server"
-if [ -f "${oldPwd}/doh-server.tar.bz2" ]; then
-	cp "${oldPwd}/doh-server.tar.bz2" "./"
+if [ -f "${oldPwd}/doh-server.tar.xz" ]; then
+	cp "${oldPwd}/doh-server.tar.xz" "./"
 else
-	curl -Lo "doh-server.tar.bz2" "https://github.com/DNSCrypt/doh-server/releases/download/${installVer}/doh-proxy_${installVer}_${platform}-${transArch}.tar.bz2"
-	cp "./doh-server.tar.bz2" "${oldPwd}/"
+	curl -Lo "doh-server.tar.xz" "https://github.com/DNSCrypt/doh-server/releases/download/${installVer}/doh-proxy_${installVer}_${platform}-${transArch}.tar.bz2"
+	cp "./doh-server.tar.xz" "${oldPwd}/"
 fi
-bzip2 -d -v "./doh-server.tar.bz2"
+xz -d -v "./doh-server.tar.xz"
 cd ".."
 tar xvf "./doh-server/doh-server.tar"
 mv ./doh-proxy/* "./doh-server"
