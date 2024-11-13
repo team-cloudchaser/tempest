@@ -6,6 +6,7 @@ extra_started_commands="reload"
 
 command="/bin/bash"
 command_args="/etc/doh-server/default.sh"
+command_background=true
 
 pidfile="/run/$RC_SVCNAME.pid"
 required_files="/etc/doh-server/default.sh"

@@ -6,6 +6,7 @@ extra_started_commands="reload"
 
 command="/bin/sing-box"
 command_args="-D /opt/sing-box/ -c /etc/sing-box/config.json run"
+command_background=true
 
 pidfile="/run/$RC_SVCNAME.pid"
 required_files="/etc/sing-box/config.json"

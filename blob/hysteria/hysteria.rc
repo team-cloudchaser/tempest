@@ -6,6 +6,7 @@ extra_started_commands="reload"
 
 command="/bin/hysteria"
 command_args="client -c /etc/hysteria/client.json"
+command_background=true
 
 pidfile="/run/$RC_SVCNAME.pid"
 required_files="/etc/hysteria/client.json"
