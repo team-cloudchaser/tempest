@@ -48,7 +48,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Xray as service..."
-		curl -Lo "$PREFIX/lib/systemd/system/xray.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray.service
+		curl -Lo "$PREFIX/lib/systemd/system/xray.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/xray/xray.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
@@ -56,7 +56,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Xray as service..."
-		curl -Lo "$PREFIX/lib/systemd/system/xray@.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray@.service
+		curl -Lo "$PREFIX/lib/systemd/system/xray@.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/xray/xray@.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
@@ -66,7 +66,7 @@ elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Xray as service..."
-		curl -Lo "$PREFIX/etc/init.d/xray" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/xray/xray.rc
+		curl -Lo "$PREFIX/etc/init.d/xray" https://github.com/team-cloudchaser/tempest/raw/main/blob/xray/xray.rc
 		chmod +x $PREFIX/etc/init.d/xray
 	fi
 else

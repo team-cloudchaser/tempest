@@ -36,7 +36,7 @@ getos=linux
 getarch="${transArch}"
 getver="${INSTALL_VER:-2.1.5}"
 downloadPath="https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/${getver}/dnscrypt-proxy-${getos}_${getarch}-${getver}.tar.gz"
-srcRepoUrl="https://github.com/PoneyClairDeLune/tempest/raw/main/blob/dnscrypt-proxy"
+srcRepoUrl="https://github.com/team-cloudchaser/tempest/raw/main/blob/dnscrypt-proxy"
 mkdir -p $PREFIX/opt && cd $PREFIX/opt
 echo "Downloading DNSCrypt Proxy from [${downloadPath}] ..."
 curl -Lo dnscrypt.tgz $downloadPath

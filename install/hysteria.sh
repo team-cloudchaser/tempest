@@ -34,28 +34,28 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Skipped registering."
 	else
 		printf "Registering... "
-		curl -Lso "$PREFIX/lib/systemd/system/hysteria.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/hysteria/hysteria.service
+		curl -Lso "$PREFIX/lib/systemd/system/hysteria.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/hysteria/hysteria.service
 		echo "Registered."
 	fi
 	if [ -e "$PREFIX/lib/systemd/system/hysteria@.service" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		printf "Registering... "
-		curl -Lso "$PREFIX/lib/systemd/system/hysteria@.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/hysteria/hysteria@.service
+		curl -Lso "$PREFIX/lib/systemd/system/hysteria@.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/hysteria/hysteria@.service
 		echo "Registered."
 	fi
 	if [ -e "$PREFIX/lib/systemd/system/hysteria-server.service" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		printf "Registering... "
-		curl -Lso "$PREFIX/lib/systemd/system/hysteria-server.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/hysteria/hysteria-server.service
+		curl -Lso "$PREFIX/lib/systemd/system/hysteria-server.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/hysteria/hysteria-server.service
 		echo "Registered."
 	fi
 	if [ -e "$PREFIX/lib/systemd/system/hysteria-server@.service" ] && [ "$CONF_OVERRIDE" != "1" ] ; then
 		echo "Skipped registering."
 	else
 		printf "Registering... "
-		curl -Lso "$PREFIX/lib/systemd/system/hysteria-server@.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/hysteria/hysteria-server@.service
+		curl -Lso "$PREFIX/lib/systemd/system/hysteria-server@.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/hysteria/hysteria-server@.service
 		echo "Registered."
 	fi
 	systemctl daemon-reload
@@ -65,7 +65,7 @@ elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 		echo "Skipped registering."
 	else
 		printf "Registering... "
-		curl -Lso "$PREFIX/etc/init.d/hysteria" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/hysteria/hysteria.rc
+		curl -Lso "$PREFIX/etc/init.d/hysteria" https://github.com/team-cloudchaser/tempest/raw/main/blob/hysteria/hysteria.rc
 		chmod +x $PREFIX/etc/init.d/hysteria
 		echo "Registered."
 	fi
@@ -73,7 +73,7 @@ elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 		echo "Skipped registering."
 	else
 		printf "Registering... "
-		curl -Lso "$PREFIX/etc/init.d/hysteria-server" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/hysteria/hysteria-server.rc
+		curl -Lso "$PREFIX/etc/init.d/hysteria-server" https://github.com/team-cloudchaser/tempest/raw/main/blob/hysteria/hysteria-server.rc
 		chmod +x $PREFIX/etc/init.d/hysteria-server
 		echo "Registered."
 	fi

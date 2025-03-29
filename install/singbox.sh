@@ -48,7 +48,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering sing-box as service..."
-		curl -Lo "$PREFIX/lib/systemd/system/sing-box.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/sing-box/sing-box.service
+		curl -Lo "$PREFIX/lib/systemd/system/sing-box.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/sing-box/sing-box.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
@@ -56,7 +56,7 @@ if [ -e "$PREFIX/lib/systemd" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering sing-box as service..."
-		curl -Lo "$PREFIX/lib/systemd/system/sing-box@.service" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/sing-box/sing-box@.service
+		curl -Lo "$PREFIX/lib/systemd/system/sing-box@.service" https://github.com/team-cloudchaser/tempest/raw/main/blob/sing-box/sing-box@.service
 		echo "Reloading daemon..."
 		systemctl daemon-reload
 	fi
@@ -66,7 +66,7 @@ elif [ -e "$PREFIX/sbin/rc-service" ] ; then
 		echo "Skipped registering."
 	else
 		echo "Registering Sing Box as service..."
-		curl -Lo "$PREFIX/etc/init.d/sing-box" https://github.com/PoneyClairDeLune/tempest/raw/main/blob/sing-box/sing-box.rc
+		curl -Lo "$PREFIX/etc/init.d/sing-box" https://github.com/team-cloudchaser/tempest/raw/main/blob/sing-box/sing-box.rc
 		chmod +x $PREFIX/etc/init.d/sing-box
 	fi
 else
