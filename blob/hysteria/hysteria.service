@@ -10,7 +10,7 @@ ExecStart=/bin/hysteria client -c /etc/hysteria/client.json
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=2s
-LimitNOFILE=infinity
+LimitNOFILE=1048576
 MemoryMax=50M
 
 [Install]

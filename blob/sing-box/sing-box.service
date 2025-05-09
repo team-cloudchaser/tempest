@@ -10,10 +10,12 @@ ExecStart=/bin/sing-box -D /opt/sing-box/ -c /etc/sing-box/config.json run
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=2s
-LimitNOFILE=infinity
+LimitNOFILE=1048576
 StartupMemoryMax=100M
-MemoryMax=100M
-CPUQuota=30%
+MemoryMax=80M
+StartupMemorySwapMax=160M
+MemorySwapMax=80M
+CPUQuota=25%
 
 [Install]
 WantedBy=multi-user.target
