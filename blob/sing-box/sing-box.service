@@ -11,10 +11,10 @@ ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=2s
 LimitNOFILE=1048576
-StartupMemoryMax=100M
-MemoryMax=80M
-StartupMemorySwapMax=160M
-MemorySwapMax=80M
+StartupMemoryMax=200M
+MemoryMax=160M
+StartupMemorySwapMax=200M
+MemorySwapMax=300M
 CPUQuota=25%
 
 [Install]
