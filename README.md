@@ -30,6 +30,9 @@ If you spot problems with installation, do not hesitate to open an issue in the 
 * Rocky Linux 9.0+ (uses systemd)
 * Termux
 
+### Regarding domain sockets
+Because Linux will not clean non-abstract domain sockets up if kills happen, the `systemd` service files themselves have been spiced to conduct automatic cleanup under `/run/<software>/%i`, with `%i` defaulting to `config`. Thus, to prevent processes listening on DSes from accidental bootlooping, please use these namespaced paths to listen to sockets.
+
 ## Targets
 To get included into this repo, the software itself must be open-source, and does not endorse closed-source counterparts.
 
