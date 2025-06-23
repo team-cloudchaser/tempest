@@ -27,6 +27,7 @@ else
 fi
 chmod +x hysteria
 ln -s $PREFIX/opt/hysteria/hysteria $PREFIX/bin/hysteria
+setcap 'cap_net_admin,cap_net_bind_service=ep' $PREFIX/opt/hysteria/hysteria
 printf "Fetching service files... "
 if [ -e "$PREFIX/lib/systemd" ] ; then
 	echo "Found Systemd."

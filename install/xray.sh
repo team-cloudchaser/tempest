@@ -35,6 +35,13 @@ fi
 echo "Extracting archive..."
 cd $PREFIX/opt/xray/
 unzip -o xray.zip && rm xray.zip
+setcap 'cap_net_admin,cap_net_bind_service=ep' $PREFIX/opt/xray/xray
+echo "Creating a dedicated user..."
+useradd xray -m -s /usr/bin/bash
+if [ -e "$PREFIX/run" ]; then
+	mkdir -p $PREFIX/run/xray
+	chown xray:xray $PREFIX/run/xray
+fi
 echo "Linking executables..."
 if [ -e "$PREFIX/bin/xray" ] ; then
 	echo "Found pre-existing copy."

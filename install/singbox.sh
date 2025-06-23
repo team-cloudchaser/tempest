@@ -35,6 +35,13 @@ echo "Extracting archives..."
 tar zxvf sing-box.tgz && rm sing-box.tgz
 mv ./${filename}/* ./
 rmdir ./${filename}
+setcap 'cap_net_admin,cap_net_bind_service=ep' $PREFIX/opt/sing-box/sing-box
+echo "Creating a dedicated user..."
+useradd sing-box -m -s /usr/bin/bash
+if [ -e "$PREFIX/run" ]; then
+	mkdir -p $PREFIX/run/sing-box
+	chown sing-box:sing-box $PREFIX/run/sing-box
+fi
 printf "Linking executables... "
 if [ -e "$PREFIX/bin/sing-box" ] ; then
 	echo "skipped."
