@@ -61,9 +61,9 @@ if [ ! -e "dnscrypt-proxy.toml" ] ; then
 	# dohNoGoogle="'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'cloudflare', 'nextdns'"
 	# dohHasGoogle="'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'google', 'cloudflare', 'nextdns'"
 	if [ "$getgoogle" == "y" ] ; then
-		sed -i "s/_SED_REPLACE_SERVERS_/'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'google', 'cloudflare', 'nextdns'/g" dnscrypt-proxy.toml
+		sed -i "s/_SED_REPLACE_SERVERS_/'he', 'google', 'google-ipv6', 'cloudflare', 'cloudflare-ipv6', 'nextdns', 'nextdns-ipv6', 'a-and-a', 'a-and-a-ipv6', 'adguard-dns-unfiltered-doh', 'adguard-dns-unfiltered-doh-ipv6', 'circl-doh', 'circl-doh-ipv6', 'controld-unfiltered', 'dns.digitale-gesellschaft.ch', 'dns.digitale-gesellschaft.ch-ipv6', 'dns.digitalsize.net', 'dns.digitalsize.net-ipv6', 'dns4all-ipv4', 'dns4all-ipv6', 'doh.appliedprivacy.net', 'doh-crypto-sx', 'doh-crypto-sx-ipv6', 'doh.ffmuc.net', 'doh.ffmuc.net-v6', 'fdn', 'fdn-ipv6', 'nic.cz', 'nic.cz-ipv6', 'njalla-doh', 'quad101', 'quad9-doh-ip4-port443-nofilter-ecs-pri', 'quad9-doh-ip6-port443-nofilter-ecs-pri', 'restena-doh-ipv4', 'restena-doh-ipv6', 'rethinkdns-doh', 'uncensoreddns-dk-ipv4', 'uncensoreddns-dk-ipv6', 'wikimedia', 'wikimedia-ipv6'/g" dnscrypt-proxy.toml
 	else
-		sed -i "s/_SED_REPLACE_SERVERS_/'doh.appliedprivacy.net', 'njalla-doh', 'quad9', 'cloudflare', 'nextdns'/g" dnscrypt-proxy.toml
+		sed -i "s/_SED_REPLACE_SERVERS_/'cloudflare', 'cloudflare-ipv6', 'nextdns', 'nextdns-ipv6', 'a-and-a', 'a-and-a-ipv6', 'adguard-dns-unfiltered-doh', 'adguard-dns-unfiltered-doh-ipv6', 'circl-doh', 'circl-doh-ipv6', 'controld-unfiltered', 'dns.digitale-gesellschaft.ch', 'dns.digitale-gesellschaft.ch-ipv6', 'dns.digitalsize.net', 'dns.digitalsize.net-ipv6', 'dns4all-ipv4', 'dns4all-ipv6', 'doh.appliedprivacy.net', 'doh-crypto-sx', 'doh-crypto-sx-ipv6', 'doh.ffmuc.net', 'doh.ffmuc.net-v6', 'fdn', 'fdn-ipv6', 'nic.cz', 'nic.cz-ipv6', 'njalla-doh', 'quad101', 'quad9-doh-ip4-port443-nofilter-ecs-pri', 'quad9-doh-ip6-port443-nofilter-ecs-pri', 'restena-doh-ipv4', 'restena-doh-ipv6', 'rethinkdns-doh', 'uncensoreddns-dk-ipv4', 'uncensoreddns-dk-ipv6', 'wikimedia', 'wikimedia-ipv6'/g" dnscrypt-proxy.toml
 	fi
 fi
 echo "Disabling conflicting system resolvers..."
