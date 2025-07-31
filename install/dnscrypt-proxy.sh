@@ -71,6 +71,7 @@ systemctl stop systemd-resolved
 systemctl disable systemd-resolved
 systemctl stop resolvconf
 systemctl disable resolvconf
+systemctl stop dnscrypt-proxy
 if [ ! -e "/etc/resolv.conf.bak" ] ; then
 	echo 'Rewriting resolving configs...'
 	mv /etc/resolv.conf /etc/resolv.conf.bak
