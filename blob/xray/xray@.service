@@ -20,6 +20,8 @@ RestartPreventExitStatus=23
 StartupMemoryMax=120M
 MemoryMax=120M
 CPUQuota=30%
+RuntimeDirectory=xray
+RUntimeDirectoryMode=0755
 
 [Install]
 WantedBy=multi-user.target

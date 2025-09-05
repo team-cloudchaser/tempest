@@ -20,6 +20,8 @@ MemoryMax=160M
 StartupMemorySwapMax=200M
 MemorySwapMax=300M
 CPUQuota=20%
+RuntimeDirectory=sing-box
+RUntimeDirectoryMode=0755
 
 [Install]
 WantedBy=multi-user.target
